@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -6,11 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebAPINubimetrics.BusinessLogic\WebAPINubimetrics.BusinessLogic.csproj" />
     <ProjectReference Include="..\WebAPINubimetrics.Entity\WebAPINubimetrics.Entity.csproj" />
     <ProjectReference Include="..\WebAPINubimetrics.Interface\WebAPINubimetrics.Interface.csproj" />
   </ItemGroup>

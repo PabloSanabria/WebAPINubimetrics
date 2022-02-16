@@ -1,0 +1,14 @@
+{
+  "externalservices": [
+    {
+      "nombre": "Countries",
+      "descripcion": "Obtiene los datos de un pais a partir de su Id",
+      "baseurl": "https://api.mercadolibre.com/classified_locations/countries/#IdPais#"
+    },
+    {
+      "nombre": "Search",
+      "descripcion": "Obtiene issues de un usuario y un proyecto ordenados por fecha de creacion descendente",
+      "baseurl": "https://api.mercadolibre.com/sites/MLA/search?q=#Texto#"
+    }
+  ]
+}

@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics", "WebAPINubimetrics\WebAPINubimetrics.csproj", "{7B48DCDD-0FCC-44DD-891C-793BD169C8E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPINubimetrics", "WebAPINubimetrics\WebAPINubimetrics.csproj", "{7B48DCDD-0FCC-44DD-891C-793BD169C8E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.BusinessLogic", "WebAPINubimetrics.BusinessLogic\WebAPINubimetrics.BusinessLogic.csproj", "{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.Entity", "WebAPINubimetrics.Entity\WebAPINubimetrics.Entity.csproj", "{68E9E1A0-CF2B-4B48-A71D-43950C29F325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.Interface", "WebAPINubimetrics.Interface\WebAPINubimetrics.Interface.csproj", "{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{7B48DCDD-0FCC-44DD-891C-793BD169C8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B48DCDD-0FCC-44DD-891C-793BD169C8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B48DCDD-0FCC-44DD-891C-793BD169C8E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68E9E1A0-CF2B-4B48-A71D-43950C29F325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E9E1A0-CF2B-4B48-A71D-43950C29F325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E9E1A0-CF2B-4B48-A71D-43950C29F325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E9E1A0-CF2B-4B48-A71D-43950C29F325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

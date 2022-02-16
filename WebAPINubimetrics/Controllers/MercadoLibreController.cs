@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using WebAPINubimetrics.Entity.Enums;
 using System.Linq;
-using System.Threading.Tasks;
-
+using WebAPINubimetrics.Interface;
+using Newtonsoft.Json;
+using WebAPINubimetrics.Entity.DTO;
+using WebAPINubimetrics.BusinessLogic.Exceptions;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebAPINubimetrics.Controllers
@@ -12,18 +14,41 @@ namespace WebAPINubimetrics.Controllers
     [ApiController]
     public class MercadoLibreController : ControllerBase
     {
-      
+        //private readonly DbApiContext _contextBD;
+        //private readonly IBSJiraRequest _jiraRequest;
+        private readonly IBSExternalServices _externalServices;
+        private readonly IBSPais _paisService;
+
+        public MercadoLibreController(IBSExternalServices externalServices, IBSPais paisService)
+        {            
+            _externalServices = externalServices;
+            _paisService = paisService;
+        }
 
         // GET api/<MercadoLibreController>/Paises/PAIS
-        [HttpGet("Paises/{Pais}")]
-        public ActionResult<string> GetPaises(string Pais)
+        [HttpGet("Paises/{idPais}")]
+        public ActionResult<PaisDTO> GetPaises(string idPais)
         {
             try
             {
-                if (Pais != "AR")//TODO: hacer enum de codiogos de paises
-                  return Unauthorized("pais no autorizado");
-                else
-                    return Ok();
+                if (idPais.ToUpper().Trim() != IDPaises.ARGENTINA)
+                  return Unauthorized();//"paises no autorizados"
+                else { 
+                    var jsonData = _externalServices.GetData("../WebAPINubimetrics/ExternalServices.json");
+
+                    ExternalServiceDTO extServ = JsonConvert.DeserializeObject<ExternalServiceDTO>(jsonData);                    
+
+                    //Obtengo el dato que me interesa del objeto
+                    var extServData = extServ.ExternalServices.FirstOrDefault(x => x.Nombre == "Countries");
+
+                    if (extServData != null)
+                    {
+                        return _paisService.ObtenerPais(extServData.BaseUrl, idPais.ToUpper().Trim());
+                        
+                    }
+                    else
+                        throw new BSJsonDataException();                    
+                }
             }
             catch (Exception)
             {
@@ -39,7 +64,7 @@ namespace WebAPINubimetrics.Controllers
         {
             try
             {
-                if (!string.IsNullOrEmpty(Producto))//TODO: hacer enum de codiogos de paises
+                if (!string.IsNullOrEmpty(Producto))
                     return NotFound("RESPONSE CODE: 404 - Producto vacio o nulo");
                 else
                     return Ok();
