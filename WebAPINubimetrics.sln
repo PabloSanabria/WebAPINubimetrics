@@ -5,11 +5,19 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPINubimetrics", "WebAPINubimetrics\WebAPINubimetrics.csproj", "{7B48DCDD-0FCC-44DD-891C-793BD169C8E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.BusinessLogic", "WebAPINubimetrics.BusinessLogic\WebAPINubimetrics.BusinessLogic.csproj", "{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPINubimetrics.BusinessLogic", "WebAPINubimetrics.BusinessLogic\WebAPINubimetrics.BusinessLogic.csproj", "{AEFE68C4-4B28-42C9-BFA5-98CC7DB5375F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.Entity", "WebAPINubimetrics.Entity\WebAPINubimetrics.Entity.csproj", "{68E9E1A0-CF2B-4B48-A71D-43950C29F325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPINubimetrics.Entity", "WebAPINubimetrics.Entity\WebAPINubimetrics.Entity.csproj", "{68E9E1A0-CF2B-4B48-A71D-43950C29F325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.Interface", "WebAPINubimetrics.Interface\WebAPINubimetrics.Interface.csproj", "{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPINubimetrics.Interface", "WebAPINubimetrics.Interface\WebAPINubimetrics.Interface.csproj", "{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics2", "WebAPINubimetrics2\WebAPINubimetrics2.csproj", "{76867DD4-6C52-46AF-BD14-37EEBF8AC5B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics.TEST", "WebAPINubimetrics.TEST\WebAPINubimetrics.TEST.csproj", "{1E50FDED-3F7D-433E-9158-F8A42631CBB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics2.BusinessLogic", "WebAPINubimetrics2.BusinessLogic\WebAPINubimetrics2.BusinessLogic.csproj", "{24C5FC05-43C8-4168-B437-DABD76606F07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPINubimetrics2.Entity", "WebAPINubimetrics2.Entity\WebAPINubimetrics2.Entity.csproj", "{E3B802F4-ACA7-466B-BB56-DFDE7FB1D1FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,22 @@ Global
 		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBDB96F9-20B0-4435-A3AF-788CAFEC86F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76867DD4-6C52-46AF-BD14-37EEBF8AC5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76867DD4-6C52-46AF-BD14-37EEBF8AC5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76867DD4-6C52-46AF-BD14-37EEBF8AC5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76867DD4-6C52-46AF-BD14-37EEBF8AC5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E50FDED-3F7D-433E-9158-F8A42631CBB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E50FDED-3F7D-433E-9158-F8A42631CBB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E50FDED-3F7D-433E-9158-F8A42631CBB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E50FDED-3F7D-433E-9158-F8A42631CBB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C5FC05-43C8-4168-B437-DABD76606F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C5FC05-43C8-4168-B437-DABD76606F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C5FC05-43C8-4168-B437-DABD76606F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C5FC05-43C8-4168-B437-DABD76606F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B802F4-ACA7-466B-BB56-DFDE7FB1D1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B802F4-ACA7-466B-BB56-DFDE7FB1D1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B802F4-ACA7-466B-BB56-DFDE7FB1D1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B802F4-ACA7-466B-BB56-DFDE7FB1D1FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
