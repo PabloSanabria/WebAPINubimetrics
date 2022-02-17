@@ -9,6 +9,6 @@ namespace WebAPINubimetrics.Interface
 {
     public interface IBSBusqueda
     {
-        ProductoDTO ObtenerProducto(string baseUrl, string producto);
+        List<ProductoDTO> ObtenerProducto(string baseUrl, string producto);
     }
 }

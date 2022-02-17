@@ -12,7 +12,7 @@ namespace WebAPINubimetrics.BusinessLogic
 
        
         /// <summary>
-        /// Metdodo utilizado para conectarse con la API de ML y obtener un pais por medio de su Id
+        /// Método utilizado para conectarse con la API de ML y obtener un pais por medio de su Id
         /// </summary>
         /// <param name="baseUrl"></param>
         /// <param name="idPais"></param>

@@ -6,6 +6,7 @@ using WebAPINubimetrics.Interface;
 using Newtonsoft.Json;
 using WebAPINubimetrics.Entity.DTO;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
+using System.Collections.Generic;
 
 namespace WebAPINubimetrics.Controllers
 {
@@ -61,7 +62,7 @@ namespace WebAPINubimetrics.Controllers
 
         // GET api/<MercadoLibreController>/Busqueda
         [HttpGet("Busqueda/{producto}")]
-        public ActionResult<ProductoDTO> GetBusqueda(string producto)
+        public ActionResult<List<ProductoDTO>> GetBusqueda(string producto)
         {
             try
             {
@@ -78,7 +79,7 @@ namespace WebAPINubimetrics.Controllers
 
                     if (extServData != null)
                     {
-                        return _busquedaService.ObtenerProducto(extServData.BaseUrl, producto.ToUpper().Trim());
+                        return Ok(_busquedaService.ObtenerProducto(extServData.BaseUrl, producto.ToUpper().Trim()));
 
                     }
                     else
