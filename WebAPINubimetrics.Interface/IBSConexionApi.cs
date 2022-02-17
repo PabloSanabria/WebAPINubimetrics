@@ -7,8 +7,10 @@ using WebAPINubimetrics.Entity.DTO;
 
 namespace WebAPINubimetrics.Interface
 {
-    public interface IBSBusqueda
+    public interface IBSConexionApi
     {
-        List<ProductoDTO> ObtenerProducto(string response);
+        ExternalServiceDataDTO ObtenerDatosJson(string jsonData, string nombreCon);
+
+        string ConectarApi(string baseUrl, string texto);
     }
 }

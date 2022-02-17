@@ -31,16 +31,14 @@ namespace WebAPINubimetrics.BusinessLogic
                 else
                     throw new BSNotFoundJsonFileException(filePath);
 
-                if (IsValidJson(json))
-                { //Convierto y retorno los datos del archivo a un objeto                    
-                    return json;
-                }
+                if (IsValidJson(json))                   
+                    return json;                
                 else
                     throw new BSJsonDataException();
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -60,9 +58,9 @@ namespace WebAPINubimetrics.BusinessLogic
                 {
                     return JsonDocument.Parse(strInput) != null;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    return false;
+                    throw new BSJsonDataException();
                 }
             }
             else

@@ -12,20 +12,15 @@ namespace WebAPINubimetrics.BusinessLogic
     {
 
         /// <summary>
-        /// Método obtener una lista de productos a partir de un texto ingresado
+        /// Método obtener una lista de productos
         /// </summary>
         /// <param name="baseUrl"></param>
         /// <param name="producto"></param>
         /// <returns></returns>
-        public List<ProductoDTO> ObtenerProducto(string baseUrl, string producto)
+        public List<ProductoDTO> ObtenerProducto(string response)
         {
             try
             {
-                //conexion con API
-                var client = new WebClient();
-                var url = baseUrl.Replace("#Texto#", producto);
-                var response = client.DownloadString(url);
-
                 //si obtengo datos desde la API los convierto a un objeto y los retorno
                 if (!string.IsNullOrEmpty(response))
                 {
@@ -48,9 +43,9 @@ namespace WebAPINubimetrics.BusinessLogic
                 else
                     throw new BSErrorBusquedaException();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
         }
     }

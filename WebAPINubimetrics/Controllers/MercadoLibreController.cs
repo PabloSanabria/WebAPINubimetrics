@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using WebAPINubimetrics.Entity.Enums;
-using System.Linq;
 using WebAPINubimetrics.Interface;
-using Newtonsoft.Json;
 using WebAPINubimetrics.Entity.DTO;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
 using System.Collections.Generic;
@@ -18,12 +16,14 @@ namespace WebAPINubimetrics.Controllers
         private readonly IBSExternalServices _externalServices;
         private readonly IBSPais _paisService;
         private readonly IBSBusqueda _busquedaService;
+        private readonly IBSConexionApi _conexionApi;
 
-        public MercadoLibreController(IBSExternalServices externalServices, IBSPais paisService, IBSBusqueda busquedaService)
+        public MercadoLibreController(IBSExternalServices externalServices, IBSPais paisService, IBSBusqueda busquedaService, IBSConexionApi conexionApi)
         {
             _externalServices = externalServices;
             _paisService = paisService;
             _busquedaService = busquedaService;
+            _conexionApi = conexionApi;
         }
 
         // GET api/<MercadoLibreController>/Paises/PAIS
@@ -33,29 +33,22 @@ namespace WebAPINubimetrics.Controllers
             try
             {
                 if (idPais.ToUpper().Trim() != IDPaises.ARGENTINA)
-                    return Unauthorized();//"paises no autorizados"
+                    return Unauthorized(); //"paises no autorizados"
                 else
                 {
-                    var jsonData = _externalServices.GetData("../WebAPINubimetrics/ExternalServices.json");
-
-                    ExternalServiceDTO extServ = JsonConvert.DeserializeObject<ExternalServiceDTO>(jsonData);
-
-                    //Obtengo el dato que me interesa del objeto
-                    var extServData = extServ.ExternalServices.FirstOrDefault(x => x.Nombre == "Countries");
+                    var extServData = _conexionApi.ObtenerDatosJson(_externalServices.GetData("../WebAPINubimetrics/ExternalServices.json"), "Countries");
 
                     if (extServData != null)
-                    {
-                        return _paisService.ObtenerPais(extServData.BaseUrl, idPais.ToUpper().Trim());
-
+                    {                        
+                        return _paisService.ObtenerPais(_conexionApi.ConectarApi(extServData.BaseUrl, idPais.ToUpper().Trim()));
                     }
                     else
                         throw new BSJsonDataException();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return NotFound(ex.Message);
             }
 
         }
@@ -67,29 +60,23 @@ namespace WebAPINubimetrics.Controllers
             try
             {
                 if (string.IsNullOrEmpty(producto))
-                    return NotFound("RESPONSE CODE: 404 - Producto vacio o nulo");
+                    return NotFound("Producto vacio o nulo");
                 else
                 {
-                    var jsonData = _externalServices.GetData("../WebAPINubimetrics/ExternalServices.json");
-
-                    ExternalServiceDTO extServ = JsonConvert.DeserializeObject<ExternalServiceDTO>(jsonData);
-
-                    //Obtengo el dato que me interesa del objeto
-                    var extServData = extServ.ExternalServices.FirstOrDefault(x => x.Nombre == "Search");
+                    var extServData = _conexionApi.ObtenerDatosJson(_externalServices.GetData("../WebAPINubimetrics/ExternalServices.json"), "Search");
 
                     if (extServData != null)
                     {
-                        return Ok(_busquedaService.ObtenerProducto(extServData.BaseUrl, producto.ToUpper().Trim()));
+                        return Ok(_busquedaService.ObtenerProducto(_conexionApi.ConectarApi(extServData.BaseUrl, producto.ToUpper().Trim())));
 
                     }
                     else
                         throw new BSJsonDataException();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                return NotFound(ex.Message);
             }
 
         }

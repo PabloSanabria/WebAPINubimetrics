@@ -3,7 +3,7 @@
     {
       "nombre": "Countries",
       "descripcion": "Obtiene los datos de un pais a partir de su Id",
-      "baseurl": "https://api.mercadolibre.com/classified_locations/countries/#IdPais#"
+      "baseurl": "https://api.mercadolibre.com/classified_locations/countries/#Texto#"
     },
     {
       "nombre": "Search",

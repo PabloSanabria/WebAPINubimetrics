@@ -25,6 +25,7 @@ namespace WebAPINubimetrics
             services.AddTransient<IBSExternalServices, BSExternalService>();
             services.AddTransient<IBSPais, BSPaisService>();
             services.AddTransient<IBSBusqueda, BSBusquedaService>();
+            services.AddTransient<IBSConexionApi, BSConexionApiService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
