@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WebAPINubimetrics.BusinessLogic;
 using WebAPINubimetrics.Interface;
+using WebAPINubimetrics.Models.DB;
 
 namespace WebAPINubimetrics
 {
@@ -21,6 +23,10 @@ namespace WebAPINubimetrics
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Register SQL database configuration context as services.
+            services.AddDbContext<DB_Nubimetrics_APIContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"));
+            });
 
             services.AddTransient<IBSExternalServices, BSExternalService>();
             services.AddTransient<IBSPais, BSPaisService>();

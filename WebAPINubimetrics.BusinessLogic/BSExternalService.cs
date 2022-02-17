@@ -47,7 +47,7 @@ namespace WebAPINubimetrics.BusinessLogic
         /// </summary>
         /// <param name="strInput"></param>
         /// <returns></returns>
-        private bool IsValidJson(string strInput)
+        private static bool IsValidJson(string strInput)
         {
             if (string.IsNullOrWhiteSpace(strInput)) { return false; }
             strInput = strInput.Trim();
