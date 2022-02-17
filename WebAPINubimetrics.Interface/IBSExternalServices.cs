@@ -3,6 +3,6 @@ namespace WebAPINubimetrics.Interface
 {
     public interface IBSExternalServices
     {
-        public string GetData(string filePath);
+        string GetData(string filePath);
     }
 }

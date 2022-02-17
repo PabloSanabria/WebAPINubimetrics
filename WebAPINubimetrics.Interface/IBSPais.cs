@@ -4,7 +4,7 @@ namespace WebAPINubimetrics.Interface
 {
     public interface IBSPais
     {
-        public PaisDTO ObtenerPais(string baseUrl, string idPais);
+        PaisDTO ObtenerPais(string baseUrl, string idPais);
 
     }
 }

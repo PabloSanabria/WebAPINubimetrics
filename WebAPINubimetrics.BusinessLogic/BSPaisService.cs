@@ -21,7 +21,7 @@ namespace WebAPINubimetrics.BusinessLogic
         {
             try
             {
-                //conexion con APi
+                //conexion con API
                 var client = new WebClient();
                 var url = baseUrl.Replace("#IdPais#", idPais);
                 var response = client.DownloadString(url);
@@ -32,7 +32,7 @@ namespace WebAPINubimetrics.BusinessLogic
                     return dataObj.ToObject<PaisDTO>();
                 }
                 else
-                    throw new BSErrorPais();
+                    throw new BSErrorPaisException();
             }
             catch (Exception)
             {
