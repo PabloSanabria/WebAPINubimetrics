@@ -32,23 +32,28 @@ namespace WebAPINubimetrics.BusinessLogic
         }
 
         /// <summary>
-        /// Método utilizado para conectarse con la API y obtener datos a partir de la url y un parametro
+        /// Método utilizado para conectarse con la API y obtener datos a partir de la url y un parametro opcional
         /// </summary>
         /// <param name="baseUrl"></param>
         /// <param name="texto"></param>
         /// <returns></returns>
         public string ConectarApi(string baseUrl, string texto)
         {
+            
+                var client = new WebClient();
+                var url = baseUrl;
+
+                if (!string.IsNullOrEmpty(texto))
+                    url = baseUrl.Replace("#Texto#", texto);
             try
             {
-                var client = new WebClient();
-                var url = baseUrl.Replace("#Texto#", texto);
                 return client.DownloadString(url);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                throw new BSErrorConexionException();
+                throw new BSErrorConexionException(ex.Message + ". URL: " + url );
             }
         }
+
     }
 }

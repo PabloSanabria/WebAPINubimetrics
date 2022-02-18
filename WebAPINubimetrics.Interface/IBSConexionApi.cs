@@ -11,6 +11,6 @@ namespace WebAPINubimetrics.Interface
     {
         ExternalServiceDataDTO ObtenerDatosJson(string jsonData, string nombreCon);
 
-        string ConectarApi(string baseUrl, string texto);
+        string ConectarApi(string baseUrl, string texto = "");
     }
 }

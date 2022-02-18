@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPINubimetrics.BusinessLogic;
+using WebAPINubimetrics.Interface;
+using WebAPINubimetrics2.BusinessLogic;
+using WebAPINubimetrics2.Interface;
 
 namespace WebAPINubimetrics2
 {
@@ -26,6 +30,10 @@ namespace WebAPINubimetrics2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<IBSExternalServices, BSExternalService>();
+            services.AddTransient<IBSCurrency, BSCurrencyService>();
+            services.AddTransient<IBSConexionApi, BSConexionApiService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

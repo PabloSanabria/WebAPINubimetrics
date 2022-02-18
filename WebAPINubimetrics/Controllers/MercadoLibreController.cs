@@ -12,7 +12,6 @@ namespace WebAPINubimetrics.Controllers
     [ApiController]
     public class MercadoLibreController : ControllerBase
     {
-        //private readonly DbApiContext _contextBD;
         private readonly IBSExternalServices _externalServices;
         private readonly IBSPais _paisService;
         private readonly IBSBusqueda _busquedaService;

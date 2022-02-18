@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
-    <PackageReference Include="NEST" Version="7.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebAPINubimetrics2.Entity\WebAPINubimetrics2.Entity.csproj" />
   </ItemGroup>
 
 </Project>

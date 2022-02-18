@@ -9,6 +9,16 @@
       "nombre": "Search",
       "descripcion": "Obtiene datos de un producto a partir de un texto ingresado",
       "baseurl": "https://api.mercadolibre.com/sites/MLA/search?q=#Texto#"
+    },
+    {
+      "nombre": "Currency",
+      "descripcion": "Obtiene datos de las monedas de los paises",
+      "baseurl": "https://api.mercadolibre.com/currencies"
+    },
+    {
+      "nombre": "CurrencyConversion",
+      "descripcion": "Obtiene el valor de una moneda en dolares",
+      "baseurl": "https://api.mercadolibre.com/currency_conversions/search?from=#Texto#&to=USD"
     }
   ]
 }
