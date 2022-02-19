@@ -8,6 +8,6 @@ namespace WebAPINubimetrics2.Interface
     {
         List<Currency> ObtenerMonedas(string response);
         CurrencyConversion ObtenerMonedaConversion(string response);
-        //List<Currency> ObtenerMonedasConConversion(string responseCurrency, string responseCurrencyConv);
+        void WriteCVS(string fileName, float data);
     }
 }

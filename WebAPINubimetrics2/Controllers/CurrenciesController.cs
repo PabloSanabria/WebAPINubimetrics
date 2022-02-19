@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
 using WebAPINubimetrics.Interface;
@@ -54,12 +59,17 @@ namespace WebAPINubimetrics2.Controllers
 
                             //asigno el valor obtenido de la conversion a la propiedad 
                             moneda.ToDolar = monedaConv;
+
+                            //creacion archivo CSV
+                            _currencyService.WriteCVS(@"C:\Users\psanabria\source\repos\Ratio.csv", moneda.ToDolar.Ratio);
                         }
                     }
 
-                    //TODO: grabar en disco, json 
+                    //creacion archivo JSON
+                    var json = JsonConvert.SerializeObject(listaMonedas);
 
-                    //TODO: grabar en disco, CSV
+                    string path = @"C:\Users\psanabria\source\repos\Currencies.json";
+                    System.IO.File.WriteAllText(path, json);                   
 
                     return listaMonedas;
 
@@ -73,13 +83,6 @@ namespace WebAPINubimetrics2.Controllers
                 return NotFound(ex.Message);
             }
         }
-
-        // GET api/<CurrenciesController>/Monedas/{idMoneda}
-        //[HttpGet("{idMoneda}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
 
 
     }
