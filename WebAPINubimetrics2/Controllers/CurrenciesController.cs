@@ -1,19 +1,12 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
 using WebAPINubimetrics.Interface;
 using WebAPINubimetrics2.Entity.DTO;
 using WebAPINubimetrics2.Interface;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebAPINubimetrics2.Controllers
 {
@@ -52,10 +45,11 @@ namespace WebAPINubimetrics2.Controllers
                     foreach (var moneda in listaMonedas)
                     {      
                         var currencyConvData = _conexionApi.ObtenerDatosJson(_externalServices.GetData("../WebAPINubimetrics/ExternalServices.json"), "CurrencyConversion");
+                        
                         if (currencyConvData != null)
                         {
                             //obtengo datos del 2do endpoint
-                            var monedaConv = _currencyService.ObtenerMonedaConversion(_conexionApi.ConectarApi(currencyConvData.BaseUrl, moneda.Id));
+                            var monedaConv = _currencyService.ObtenerMonedaConversionUSD(_conexionApi.ConectarApi(currencyConvData.BaseUrl, moneda.Id));
 
                             //asigno el valor obtenido de la conversion a la propiedad 
                             moneda.ToDolar = monedaConv;
@@ -66,10 +60,7 @@ namespace WebAPINubimetrics2.Controllers
                     }
 
                     //creacion archivo JSON
-                    var json = JsonConvert.SerializeObject(listaMonedas);
-
-                    string path = @"C:\Users\psanabria\source\repos\Currencies.json";
-                    System.IO.File.WriteAllText(path, json);                   
+                    _currencyService.WriteJSON(@"C:\Users\psanabria\source\repos\Currencies.json", listaMonedas);
 
                     return listaMonedas;
 

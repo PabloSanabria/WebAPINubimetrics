@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using System;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
 using WebAPINubimetrics.Entity.DTO;
@@ -12,8 +12,7 @@ namespace WebAPINubimetrics.BusinessLogic
         /// <summary>
         /// Método utilizado para obtener un pais
         /// </summary>
-        /// <param name="baseUrl"></param>
-        /// <param name="idPais"></param>
+        /// <param name="response"></param>
         /// <returns></returns>
         public PaisDTO ObtenerPais(string response)
         {
@@ -21,8 +20,7 @@ namespace WebAPINubimetrics.BusinessLogic
             {                
                 //si obtengo datos desde la API los convierto a un objeto y los retorno
                 if (!string.IsNullOrEmpty(response)) {
-                    var dataObj = JObject.Parse(response);
-                    return dataObj.ToObject<PaisDTO>();
+                    return JsonConvert.DeserializeObject<PaisDTO>(response);
                 }
                 else
                     throw new BSErrorPaisException();

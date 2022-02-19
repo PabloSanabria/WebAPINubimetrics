@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,12 +11,15 @@ namespace WebAPINubimetrics2.BusinessLogic
 {
     public class BSCurrencyService: IBSCurrency
     {
-
+        /// <summary>
+        /// Metodo utilizado para obtener una lista de las monedas de los paises
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public List<Currency> ObtenerMonedas(string response)
         {
             try
             {
-
                 //si obtengo datos desde la API los convierto a un objeto y los retorno
                 if (!string.IsNullOrEmpty(response))
                 {
@@ -32,8 +34,12 @@ namespace WebAPINubimetrics2.BusinessLogic
             }
         }
 
-
-        public CurrencyConversion ObtenerMonedaConversion(string response)
+        /// <summary>
+        /// Metodo utilizado para obtener la conversion de una moneda a Dolar 
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public CurrencyConversion ObtenerMonedaConversionUSD(string response)
         {
             try
             {
@@ -51,13 +57,10 @@ namespace WebAPINubimetrics2.BusinessLogic
             }
         }
 
-
-        // Escribir archivo CSV
         /// <summary>
-        /// Write CSV File
+        /// Crea o escribe datos en un archivo CSV
         /// </summary>
         /// <param name="fileName"></param>
-        /// <param name="id"></param>
         /// <param name="data"></param>
         public void WriteCVS(string fileName, float data)
         {
@@ -80,7 +83,6 @@ namespace WebAPINubimetrics2.BusinessLogic
             }
 
             // Escribir datos en el archivo
-            // Escribir objeto para instanciar archivo
             StreamWriter swd = new StreamWriter(fileName, true, Encoding.Default);
             StringBuilder sbd = new StringBuilder();
             // Agregue los datos que se guardarán en la secuencia de cadena
@@ -89,5 +91,21 @@ namespace WebAPINubimetrics2.BusinessLogic
             swd.Flush();
             swd.Close();
         }
+
+        /// <summary>
+        /// Crea o escribe datos en un archivo JSON
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="listaMonedas"></param>
+        public void WriteJSON(string fileName, List<Currency> listaMonedas)
+        {
+
+            var json = JsonConvert.SerializeObject(listaMonedas);
+
+            string path = fileName;
+            System.IO.File.WriteAllText(path, json);
+        }
+
+
     }
 }

@@ -4,7 +4,6 @@ using WebAPINubimetrics.Entity.Enums;
 using WebAPINubimetrics.Interface;
 using WebAPINubimetrics.Entity.DTO;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
-using System.Collections.Generic;
 
 namespace WebAPINubimetrics.Controllers
 {
@@ -54,7 +53,7 @@ namespace WebAPINubimetrics.Controllers
 
         // GET api/<MercadoLibreController>/Busqueda
         [HttpGet("Busqueda/{producto}")]
-        public ActionResult<List<ProductoDTO>> GetBusqueda(string producto)
+        public ActionResult<BusquedaDTO> GetBusqueda(string producto)
         {
             try
             {
