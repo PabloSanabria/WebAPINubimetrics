@@ -4,6 +4,6 @@ namespace WebAPINubimetrics.Interface
 {
     public interface IBSBusqueda
     {
-        BusquedaDTO ObtenerProducto(string response);
+        BusquedaDTO Buscar(string response);
     }
 }

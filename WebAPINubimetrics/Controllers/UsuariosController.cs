@@ -8,16 +8,35 @@ using WebAPINubimetrics.Models.DB;
 
 namespace WebAPINubimetrics.Controllers
 {
+    /// <summary>
+    /// Controller utilizado para representar el servicio Usuarios
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
+        #region private members
+        
         private readonly DB_Nubimetrics_APIContext _context;
 
+        #endregion
+
+
+        #region Constructor
+        /// <summary>
+        /// Constructor del controller MercadoLibre
+        /// </summary>
+        /// <param name="context"></param>
         public UsuariosController(DB_Nubimetrics_APIContext context)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region endpoints     
+
+        #region punto1Usuarios
 
         // GET: api/Usuarios
         [HttpGet]
@@ -100,5 +119,9 @@ namespace WebAPINubimetrics.Controllers
         {
             return _context.User.Any(e => e.Id == id);
         }
+
+        #endregion
+
+        #endregion
     }
 }

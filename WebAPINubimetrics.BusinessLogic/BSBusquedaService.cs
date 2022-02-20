@@ -14,7 +14,7 @@ namespace WebAPINubimetrics.BusinessLogic
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
-        public BusquedaDTO ObtenerProducto(string response)
+        public BusquedaDTO Buscar(string response)
         {
             try
             {

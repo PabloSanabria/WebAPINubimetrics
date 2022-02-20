@@ -99,7 +99,7 @@ namespace WebAPINubimetrics2.BusinessLogic
         /// <param name="listaMonedas"></param>
         public void WriteJSON(string fileName, List<Currency> listaMonedas)
         {
-
+            //convierto a formato Json los datos de la lista
             var json = JsonConvert.SerializeObject(listaMonedas);
 
             string path = fileName;
