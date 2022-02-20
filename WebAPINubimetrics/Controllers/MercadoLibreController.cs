@@ -46,7 +46,7 @@ namespace WebAPINubimetrics.Controllers
 
         #region punto1Paises
 
-        // GET api/<MercadoLibreController>/Paises/PAIS
+        // GET api/<MercadoLibreController>/Paises/AR
         [HttpGet("Paises/{idPais}")]
         public ActionResult<PaisDTO> GetPaises(string idPais)
         {
@@ -76,12 +76,12 @@ namespace WebAPINubimetrics.Controllers
         }
 
         // GET api/<MercadoLibreController>/Busqueda
-        [HttpGet("Busqueda/{producto}")]
-        public ActionResult<BusquedaDTO> GetBusqueda(string producto)
+        [HttpGet("Busqueda/{Busqueda}")]
+        public ActionResult<BusquedaDTO> GetBusqueda(string busqueda)
         {
             try
             {
-                if (string.IsNullOrEmpty(producto))
+                if (string.IsNullOrEmpty(busqueda))
                     return NotFound("Producto vacio o nulo");
                 else
                 {
@@ -91,7 +91,7 @@ namespace WebAPINubimetrics.Controllers
                     if (extServData != null)
                     {
                         //se realiza la busqueda enviando por parametro el response que devuelve la conexion a la API de ML y el texto ingresado
-                        return Ok(_busquedaService.Buscar(_conexionApi.ConectarApi(extServData.BaseUrl, producto.ToUpper().Trim())));
+                        return Ok(_busquedaService.Buscar(_conexionApi.ConectarApi(extServData.BaseUrl, busqueda.ToUpper().Trim())));
 
                     }
                     else

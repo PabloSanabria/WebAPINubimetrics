@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAPINubimetrics.Models.DB
+namespace WebAPINubimetrics.Entity.DTO
 {
-    public partial class Usuario
+    public class UsuarioDTO
     {
         [Key]
         public int Id { get; set; }

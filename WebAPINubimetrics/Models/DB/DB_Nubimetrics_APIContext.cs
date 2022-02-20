@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 #nullable disable
 
@@ -19,6 +15,6 @@ namespace WebAPINubimetrics.Models.DB
         {
         }
 
-        public DbSet<WebAPINubimetrics.Models.DB.Usuario> User { get; set; }
+        public DbSet<WebAPINubimetrics.Entity.DTO.UsuarioDTO> User { get; set; }
     }
 }
