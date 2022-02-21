@@ -12,6 +12,7 @@ Ambas están realizadas con .Net Core 5.0, IDE de Visual Studio 2019, lenguaje d
 
 ## Pre-requisitos
 * Instalaciones necesarias: Visual studio 2019 version 16.11.5 o superior, .Net Framework Versión 4.8.04084 o superior, .NET CORE 5.0 o superior, SQL Express 2017, SQL Server Managment Studio, Swagger, Git integrado con Visual Studio para el versionado y NUnit.Framework para proyecto TEST
+* * Paquetes instalados desde NuGet: Swashbuckle.AspNetCore, Microsoft.AspNet.WebApi.Core, Microsoft.EntityFrameworkCore, Microsoft.EntityFrameworkCore.SqlServer.
 
 Para ejecutar el programa de manera local: Clonar el repositorio o descargarlo Zipeado desde GitHub a una carpeta en su máquina. Abrir la solución desde en Visual Studio 2019 o posterior y correrlo, de ser necesario, instalar y aceptar los certificados que se indiquen. Una vez levantado el programa deberia visualizar una pantalla como la siguiente, mostrando la UI que brinda Swagger:
 Cabe aclarar que para poder desplegar las API requeridas para cada punto se debe cambiar al proyecto de inicio correspondiente, para esto seguir los siguientes pasos: 
@@ -166,7 +167,8 @@ INSERT INTO [dbo].[User]
 GO
 
 ```
-* Luego dentro de la solucion en Visual Studio buscar el archivo appsettings.json y modificar el connectionstring de manera que el servidor quede apuntando a su serivdor local. Para esto ingresar el mismo en la seccion Data source, como se indica en la imagen:
+Con esto ya se deberia tener creada la Base de datos "WebAPINubimetrics" con una tabla "User" populada con 3 registros.
+* Luego dentro de la solucion en Visual Studio buscar el archivo "appsettings.json" y modificar el connectionstring de manera que el servidor quede apuntando a su serivdor local. Para esto ingresar el mismo en la seccion Data source, como se indica en la imagen:
 ![image](https://user-images.githubusercontent.com/32108894/154866831-075d4cde-711c-40e7-aae5-9859a8c62b22.png)
 
 Conectarse a la base de datos con SQL SERVER Managment Studio:
@@ -177,13 +179,38 @@ Conectarse a la base de datos con SQL SERVER Managment Studio:
 
 
 ## Pruebas
-### A continuación se visualizan algunos casos de pruebas que se realizaron para testear la API:
 
 ### Función GET Paises:
-
+Para ejecutar pruebas desde Swagger realizar los siguientes pasos, hacer click en el endpoint deseado, por ejemplo en la Funcion Get de Paises:
+![image](https://user-images.githubusercontent.com/32108894/154958484-d8a59509-9d91-42d3-bbea-bd0c1a7e557f.png)
+Se desplegará una pantala como la siguiente, en donde debemos hacer clcik en el boton "Try it out":
+![image](https://user-images.githubusercontent.com/32108894/154958736-020bd514-4b57-4dff-a182-65a0a978b5a6.png)
+Luego de presiona el boton, el mismo desaparecerá y se mostrarn 2 nuevos botones "Cancel", para cancelar la ejecucion y "Execute" para ejecutar la accion, En este caso previo a la ejecucion debemos colocar el IdPais (por Ej: AR), ya que es obligatorio:
+![image](https://user-images.githubusercontent.com/32108894/154959629-1e2e816d-4410-416d-873b-e7868fa788c7.png)
+Presionamos el boton Execute y deberiamos tener la siguiente respuesta:
 #### *	Prueba superada
+Como se ve en la siguiente imagen obtenemos un Json con los datos provenientes del endpoint, y el codigo Http. Si queremos realizar una nueva ejecucion presionamos el boton "Clear"
+![image](https://user-images.githubusercontent.com/32108894/154960117-7a288e51-7835-4849-bc05-495752d98200.png)
 
-#### * Pruebas Fallidas
+#### * Prueba Fallida
+En la siguiente imagen vemos la respuesta que se obtiene cuando se coloca un IdPais incorrecto, por ejemplo en este caso "BR"
+![image](https://user-images.githubusercontent.com/32108894/154960813-7ce04367-c586-413d-9635-9c579f4fcaf6.png)
+
+### A continuación se visualizan algunos casos mas de pruebas que se realizaron para testear la API:
 
 ### Función POST Usarios:
 
+
+
+NOTA IMPORTANTE: el endpoint https://api.mercadolibre.com/currencies/ devuelve 2 monedas (VEF y VES) que en el endpoint https://api.mercadolibre.com/currency_conversions/search?from=VEF&to=USD devuelven el siguiente error:
+```
+{
+  "message": "VEF/VES currency convertion is not allowed",
+  "error": "forbidden",
+  "status": 403,
+  "cause": [
+  ]
+}
+
+```
+Por lo que se decidió colocar una validación para las mismas no sean tenidas en cuenta.
