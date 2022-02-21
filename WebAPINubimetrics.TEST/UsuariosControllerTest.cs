@@ -1,20 +1,17 @@
 using NUnit.Framework;
 using WebAPINubimetrics.BusinessLogic;
 using WebAPINubimetrics.Interface;
-using WebAPINubimetrics.Models.DB;
 
 namespace WebAPINubimetrics.TEST
 {
     public class UsuariosControllerTest
     {
 
-        private DB_Nubimetrics_APIContext _context;
         private IBSUsuarioValidaciones _usuarioValidaciones;
 
         [SetUp]
         public void SetUp()
         {
-            _context = new DB_Nubimetrics_APIContext();
             _usuarioValidaciones = new BSUsuarioValidaciones();        
         }
 

@@ -35,7 +35,7 @@ namespace WebAPINubimetrics.BusinessLogic
         /// <returns></returns>
         public bool UsuarioValoresCorrectos(UsuarioDTO usuario)
         {
-            if (usuario.Id <= 0 || string.IsNullOrEmpty(usuario.Nombre) || string.IsNullOrEmpty(usuario.Apellido)
+            if (usuario.Id < 0 || string.IsNullOrEmpty(usuario.Nombre) || string.IsNullOrEmpty(usuario.Apellido)
                 || string.IsNullOrEmpty(usuario.Password) || string.IsNullOrEmpty(usuario.Password))
                 return false;
 

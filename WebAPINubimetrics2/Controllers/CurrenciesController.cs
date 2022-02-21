@@ -56,35 +56,37 @@ namespace WebAPINubimetrics2.Controllers
                 var currencyData = _conexionApi.ObtenerDatosJson(_externalServices.GetData("../WebAPINubimetrics/ExternalServices.json"), "Currency");
 
                 if (currencyData != null)
-                {       //obtenermos datos del primer endpoint
+                {   
+                    //obtenemos datos del primer endpoint
                     var listaMonedas = _currencyService.ObtenerMonedas(_conexionApi.ConectarApi(currencyData.BaseUrl));
 
-                    //IMPORTANTE: Se quitan estos objetos de la lista, ya que la API devuelve error: Forbidden
-                    listaMonedas = listaMonedas.Where(x => x.Id != "VEF" && x.Id != "VES").ToList();
-         
-
-                    foreach (var moneda in listaMonedas)
+                    if (listaMonedas.Count > 0)
                     {
-                        //obtenemos los datos para realizar la conexion a la API
-                        var currencyConvData = _conexionApi.ObtenerDatosJson(_externalServices.GetData("../WebAPINubimetrics/ExternalServices.json"), "CurrencyConversion");
-                        
-                        if (currencyConvData != null)
+                        //IMPORTANTE: Se quitan estos objetos de la lista, ya que la API devuelve error: Forbidden
+                        listaMonedas = _currencyService.QuitarMonedas(ref listaMonedas, _currencyService.ObtenerMonedasNoValidas());
+
+                        foreach (var moneda in listaMonedas)
                         {
-                            //obtengo datos del 2do endpoint
-                            var monedaConv = _currencyService.ObtenerMonedaConversionUSD(_conexionApi.ConectarApi(currencyConvData.BaseUrl, moneda.Id));
+                            //obtenemos los datos para realizar la conexion a la API
+                            var currencyConvData = _conexionApi.ObtenerDatosJson(_externalServices.GetData("../WebAPINubimetrics/ExternalServices.json"), "CurrencyConversion");
 
-                            //asigno el valor obtenido de la conversion a la propiedad 
-                            moneda.ToDolar = monedaConv;
+                            if (currencyConvData != null)
+                            {
+                                //obtengo datos del 2do endpoint y asigno el valor obtenido de la conversion a la propiedad ToDolar
+                                moneda.ToDolar = _currencyService.ObtenerMonedaConversionUSD(_conexionApi.ConectarApi(currencyConvData.BaseUrl, moneda.Id));
 
-                            //creacion archivo CSV
-                            _currencyService.WriteCVS(@"C:\Users\psanabria\source\repos\Ratio.csv", moneda.ToDolar.Ratio);
+                                //creacion archivo CSV
+                                _currencyService.WriteCVS(@"C:\Users\psanabria\source\repos\Ratio.csv", moneda.ToDolar.Ratio);
+                            }
                         }
+
+                        //creacion archivo JSON
+                        _currencyService.WriteJSON(@"C:\Users\psanabria\source\repos\Currencies.json", listaMonedas);
+
+                        return Ok(listaMonedas);
                     }
-
-                    //creacion archivo JSON
-                    _currencyService.WriteJSON(@"C:\Users\psanabria\source\repos\Currencies.json", listaMonedas);
-
-                    return Ok(listaMonedas);
+                    else
+                        throw new BSErrorCurrencyException();
 
                 }
                 else

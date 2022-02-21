@@ -71,6 +71,9 @@ namespace WebAPINubimetrics.Controllers
                 return BadRequest();
             }
 
+            if (!_usuarioValidaciones.UsuarioValoresCorrectos(usuario))
+                return NotFound("Error en alguno de los valores ingresados");
+
             //Se modifica un usuario
             _context.Entry(usuario).State = EntityState.Modified;
 
@@ -89,7 +92,7 @@ namespace WebAPINubimetrics.Controllers
                 {
                     throw;
                 }
-            }
+            }            
 
             return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
         }

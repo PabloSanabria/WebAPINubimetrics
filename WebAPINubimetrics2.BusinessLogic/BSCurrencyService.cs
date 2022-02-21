@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using WebAPINubimetrics.BusinessLogic.Exceptions;
 using WebAPINubimetrics2.Entity.DTO;
+using WebAPINubimetrics2.Entity.Enums;
 using WebAPINubimetrics2.Interface;
 
 namespace WebAPINubimetrics2.BusinessLogic
@@ -67,11 +69,11 @@ namespace WebAPINubimetrics2.BusinessLogic
             if (!File.Exists(fileName)) // Crea un archivo cuando el archivo no existe
             {
                 // Crear secuencia de archivo (crear archivo)
-                FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                FileStream fs = new (fileName, FileMode.Create, FileAccess.Write);
                 // Crear un objeto de escritura de secuencia y vincular la secuencia de archivo
-                StreamWriter sw = new StreamWriter(fs);
+                StreamWriter sw = new (fs);
                 // Instanciar secuencia de cadena
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new ();
                 // Agregue datos a la secuencia de cadena (si el título de los datos cambia, modifíquelo aquí)
                 sb.Append("Ratio");
                 // Escribir datos de secuencia de cadena en el archivo
@@ -83,8 +85,8 @@ namespace WebAPINubimetrics2.BusinessLogic
             }
 
             // Escribir datos en el archivo
-            StreamWriter swd = new StreamWriter(fileName, true, Encoding.Default);
-            StringBuilder sbd = new StringBuilder();
+            StreamWriter swd = new (fileName, true, Encoding.Default);
+            StringBuilder sbd = new ();
             // Agregue los datos que se guardarán en la secuencia de cadena
             sbd.Append(data);
             swd.WriteLine(sbd);
@@ -104,6 +106,37 @@ namespace WebAPINubimetrics2.BusinessLogic
 
             string path = fileName;
             System.IO.File.WriteAllText(path, json);
+        }
+
+        /// <summary>
+        /// Obtiene una lista de monedas no validas para conversiona a USD
+        /// </summary>
+        /// <param name="listaMonedas"></param>
+        /// <param name="listaMonedasNoValidas"></param>
+        /// <returns></returns>
+        public List<string> ObtenerMonedasNoValidas()
+        {
+            List<string> monedas = new();
+            monedas.Add(MonedasNoValidas.BOLIVARFUERTE);
+            monedas.Add(MonedasNoValidas.BOLIVARSOBERANO);
+
+            return monedas;
+        }
+
+        /// <summary>
+        /// Quita de la lista de monedas validas las No validas
+        /// </summary>
+        /// <param name="listaMonedas"></param>
+        /// <param name="listaMonedasNoValidas"></param>
+        /// <returns></returns>
+        public List<Currency> QuitarMonedas(ref List<Currency> listaMonedas, List<string> listaMonedasNoValidas)
+        {
+            foreach (var item in listaMonedasNoValidas)
+            {
+                listaMonedas = listaMonedas.Where(x => x.Id != item).ToList();
+            }
+           
+            return listaMonedas;
         }
 
 

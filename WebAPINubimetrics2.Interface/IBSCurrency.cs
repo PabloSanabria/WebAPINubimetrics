@@ -9,5 +9,7 @@ namespace WebAPINubimetrics2.Interface
         CurrencyConversion ObtenerMonedaConversionUSD(string response);
         void WriteCVS(string fileName, float data);
         void WriteJSON(string fileName, List<Currency> listaMonedas);
+        List<Currency> QuitarMonedas(ref List<Currency> listaMonedas, List<string> listaMonedasNoValidas);
+        List<string> ObtenerMonedasNoValidas();
     }
 }
