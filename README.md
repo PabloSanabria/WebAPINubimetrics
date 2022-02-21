@@ -209,7 +209,7 @@ En la siguiente imagen vemos la respuesta que se obtiene cuando se coloca un IdP
 
 ### A continuación se visualizan algunos casos mas de pruebas que se realizaron para testear la API:
 
-### Función POST Usarios:
+### Función POST Usuarios:
 
 #### *	Prueba superada
 ![image](https://user-images.githubusercontent.com/32108894/154966309-61e414e9-1075-484d-910f-ed427274ddc5.png)
@@ -217,7 +217,7 @@ En la siguiente imagen vemos la respuesta que se obtiene cuando se coloca un IdP
 
 
 #### * Prueba Fallida
-![image](https://user-images.githubusercontent.com/32108894/154965571-8086e2b7-f165-4e9b-b2aa-7beb30485a2d.png)
+![image](https://user-images.githubusercontent.com/32108894/154972777-9c99dd59-a7d3-437c-804b-7f0a4fed86d0.png)
 
 
 ### Función Get Currencies (WebAPINubimetrics2):
